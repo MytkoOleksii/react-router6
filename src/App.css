@@ -15,17 +15,29 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+  min-height: 15px;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+
+  padding: 10px;
+
+}
+.App-header > a {
+  padding: 10px;
+
+}
+A:visited {
+  color: #818181; /* Цвет посещенных ссылок */
+}
+A:active {
+  color: #ff0202; /* Цвет активных ссылок */
 }
 
 .App-link {
-  color: #61dafb;
+  color: #96e2fc;
 }
 
 @keyframes App-logo-spin {
