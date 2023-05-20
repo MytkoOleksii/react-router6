@@ -26,7 +26,7 @@ function Login(props) {
                 </label>
                 <button type={'submit'}>Login</button>
             </form>
-            {fromPage}
+          Звідки ми пришли:  {fromPage}
         </div>
     );
 }
