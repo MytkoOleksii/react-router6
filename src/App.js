@@ -63,7 +63,7 @@ function App() {
                             </Route>
                             <Route path='/about-us'
                                    element={<Navigate to={'/about'} replace/>}/> {/!*!// Navigate -переадресация *!/}
-                            <Route path={'/posts'} element={<Blog/>}/>
+                            <Route path={'/posts'} element={<Blog/>} />
                             <Route path={'/posts/:id'} element={<Single/>}/>
                             <Route path={'/posts/:id/edit'} element={<EditPost/>}/>
                             <Route path={'/posts/new'} element={
