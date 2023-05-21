@@ -12,7 +12,7 @@ function Error() {
                 <h3>{error.data.message || 'Something wrong (data)'}</h3>
                 <h3>{error.data.reason || 'Reason (data)'}</h3>
             </div>
-        );
+        )
     }
     throw error
 }

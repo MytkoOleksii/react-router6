@@ -1,5 +1,5 @@
-import React,{ Suspense }  from 'react';
-import {Await, defer, json, Link, useLoaderData, useLocation, useSearchParams} from "react-router-dom";
+import React, {Suspense} from 'react';
+import {Await, defer, Link, useLoaderData, useSearchParams} from "react-router-dom";
 import BlogFilter from "../components/BlogFilter";
 
 
@@ -9,25 +9,26 @@ async function getPosts() {
         throw  new Response('',{status: response.status, statusText: 'Not found'}) // обрабатывается в Error компоненте
     }
     return response.json() // Разбирает данные
-};
+}
 
-/*export const blogLoader = async () => {
+export const blogLoader = async () => {
     return defer({// Есть возможность ожидать пока какая то часть данных дозагрузиться/будет получена
         posts: getPosts()
     })
-};*/
-export const blogLoader = async () => {
+};
+/*export const blogLoader = async () => {
    const posts = getPosts()
     if(!posts.length) {
         throw json({message:"Not found ({data})", reason: 'Wrong URL ({data})'},{status: 404})
     }
-};
+return{
+        posts
+}
+};*/
 
-
-function Blog(props) {
+function Blog() {
 
     const {posts} = useLoaderData()
-
     const [searchParams, setSearchParams] = useSearchParams();
 //---------------- варіант 1  ---------------------------//
     //   const[posts, setPosts] = useState([]); // Варіант 1

@@ -6,8 +6,8 @@ import Blog, {blogLoader} from "./pages/Blog";
 import Notfound from "./pages/Notfound";
 import Layout from "./components/Layout";
 import Single, {postLoader} from "./pages/Single";
-import Creator from "./pages/Creator";
-import EditPost from "./pages/EditPost";
+import CreatorPost, {createPostAction} from "./pages/CreatorPost";
+import EditPost, { updatePostAction} from "./pages/EditPost";
 import Login from "./pages/Login";
 import RequireAuth from "./hoc/RequireAuth";
 import AuthProvider from "./hoc/AuthProvider";
@@ -24,12 +24,12 @@ const router =  createBrowserRouter(createRoutesFromElements(
         <Route path='/about-us' element={<Navigate to={'/about'} replace/>}/> {/*// Navigate -переадресация */}
         <Route path={'/posts'} element={<Blog/>} loader={blogLoader} />
         <Route path={'/posts/:id'} element={<Single/>} loader={postLoader}/>
-        <Route path={'/posts/:id/edit'} element={<EditPost/>}/>
+        <Route path={'/posts/:id/edit'} element={<EditPost/>}  loader={postLoader} action={updatePostAction}/>
         <Route path={'/posts/new'} element={
             <RequireAuth>
-                <Creator/>
+                <CreatorPost/>
             </RequireAuth>
-        }/>
+        } action={createPostAction}/>
         <Route path='/login' element={<Login/>}/>
         <Route path={'*'} element={<Notfound/>}/>
     </Route>
@@ -69,7 +69,7 @@ function App() {
                             <Route path={'/posts/:id/edit'} element={<EditPost/>}/>
                             <Route path={'/posts/new'} element={
                                 <RequireAuth>
-                                    <Creator/>
+                                    <CreatorPost/>
                                 </RequireAuth>
                             }/>
                             <Route path='/login' element={<Login/>}/>
