@@ -1,17 +1,26 @@
 import React,{ Suspense }  from 'react';
-import {Await, defer, Link, useLoaderData, useLocation, useSearchParams} from "react-router-dom";
+import {Await, defer, json, Link, useLoaderData, useLocation, useSearchParams} from "react-router-dom";
 import BlogFilter from "../components/BlogFilter";
 
 
 async function getPosts() {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts')// Получает запрос
+    if(!response.ok) { // Проверяем все ли ок с запросом
+        throw  new Response('',{status: response.status, statusText: 'Not found'}) // обрабатывается в Error компоненте
+    }
     return response.json() // Разбирает данные
 };
 
-export const blogLoader = async () => {
+/*export const blogLoader = async () => {
     return defer({// Есть возможность ожидать пока какая то часть данных дозагрузиться/будет получена
         posts: getPosts()
     })
+};*/
+export const blogLoader = async () => {
+   const posts = getPosts()
+    if(!posts.length) {
+        throw json({message:"Not found ({data})", reason: 'Wrong URL ({data})'},{status: 404})
+    }
 };
 
 

@@ -12,16 +12,17 @@ import Login from "./pages/Login";
 import RequireAuth from "./hoc/RequireAuth";
 import AuthProvider from "./hoc/AuthProvider";
 import React from "react";
+import Error from "./components/Error";
 
 const router =  createBrowserRouter(createRoutesFromElements(
-    <Route path={'/'} element={<Layout/>}>
+    <Route path={'/'} element={<Layout/>} errorElement={<Error/>}>
         <Route index element={<Home/>}/>
         <Route path='/about/*' element={<About/>}>
             <Route path={'contacts'} element={<p>Our contacts</p>}/> {/* // Вложенніе роути*/}
             <Route path={'team'} element={<p>Our team</p>}/>
         </Route>
         <Route path='/about-us' element={<Navigate to={'/about'} replace/>}/> {/*// Navigate -переадресация */}
-        <Route path={'/posts'} element={<Blog/>} loader={blogLoader}/>
+        <Route path={'/posts'} element={<Blog/>} loader={blogLoader} />
         <Route path={'/posts/:id'} element={<Single/>} loader={postLoader}/>
         <Route path={'/posts/:id/edit'} element={<EditPost/>}/>
         <Route path={'/posts/new'} element={
