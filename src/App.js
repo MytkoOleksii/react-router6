@@ -17,12 +17,10 @@ const router =  createBrowserRouter(createRoutesFromElements(
     <Route path={'/'} element={<Layout/>}>
         <Route index element={<Home/>}/>
         <Route path='/about/*' element={<About/>}>
-            {/* // Вложенніе роути*/}
-            <Route path={'contacts'} element={<p>Our contacts</p>}/>
+            <Route path={'contacts'} element={<p>Our contacts</p>}/> {/* // Вложенніе роути*/}
             <Route path={'team'} element={<p>Our team</p>}/>
         </Route>
-        <Route path='/about-us'
-               element={<Navigate to={'/about'} replace/>}/> {/*// Navigate -переадресация */}
+        <Route path='/about-us' element={<Navigate to={'/about'} replace/>}/> {/*// Navigate -переадресация */}
         <Route path={'/posts'} element={<Blog/>} loader={blogLoader}/>
         <Route path={'/posts/:id'} element={<Single/>} loader={postLoader}/>
         <Route path={'/posts/:id/edit'} element={<EditPost/>}/>
@@ -32,19 +30,15 @@ const router =  createBrowserRouter(createRoutesFromElements(
             </RequireAuth>
         }/>
         <Route path='/login' element={<Login/>}/>
-
         <Route path={'*'} element={<Notfound/>}/>
     </Route>
 ))
-
 function App() {
     return (
         <AuthProvider>
-
             <div className="App">
                 <RouterProvider router={router} />
                 <div>
-
                     <p> App. Get started with React-Router 6 . </p>
                 </div>
             </div>
