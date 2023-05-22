@@ -5,6 +5,7 @@ import {Form} from "react-router-dom";
 // request -  знает все об форме которая была отправлена
 // Вызвать метод formData()
 function NewPost({submitting}) {
+    // Отправляем форму по адресу
     return (
         <Form action={'/posts/new'}  method='post'>
             <label>
@@ -20,5 +21,4 @@ function NewPost({submitting}) {
         </Form>
     );
 }
-
 export default NewPost;
