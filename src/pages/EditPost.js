@@ -25,8 +25,8 @@ const updatePost = async (post) => {
     return response.json()
 };
 
-export const updatePostAction = async ({request}) => {
-    const formData = await request.formData();
+export const updatePostAction = async ({request}) => {// При переходе на данный <Route с точки зрения POST запроса в Action приходит определенный параметр {request}
+    const formData = await request.formData();       // {request} - знает все об форме которая была отправленная
     if(!formData.get('title') || !formData.get('body')) {
         return {message:'All field are required!!!'} // если поле пустое
     }
